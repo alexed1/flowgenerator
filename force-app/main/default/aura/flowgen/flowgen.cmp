@@ -1,0 +1,16 @@
+<aura:component implements="lightning:availableForFlowScreens" access="global">
+     
+Flowgen
+
+    <c:metadataService aura:id="metalib"/>
+<!-- 
+    <aura:attribute name="ShowContactScreen" type="Boolean" access="global" />
+    <aura:attribute name="ShowOpportunityScreen" type="Boolean" access="global" />
+    <aura:attribute name="TaskGuidanceStatus" type="Text" access="global" />
+    <aura:attribute name="TaskGuidanceStatus" type="Boolean" access="global" />
+    <aura:attribute name="Foundation Flow Name" type="Text" access="global"/> -->
+
+    
+
+    <aura:handler name="init" value="{!this}" action="{!c.init}" />
+</aura:component>

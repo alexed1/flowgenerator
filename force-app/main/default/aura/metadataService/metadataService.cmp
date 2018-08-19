@@ -1,0 +1,20 @@
+<aura:component controller="MetadataServiceController">
+    <aura:attribute type="String" name="sessionId" />
+    <aura:attribute type="String" name="showVFPage" default="True" />
+    <aura:attribute type="String" name="callerURL" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <aura:method name="getMetadataItemListAsync" action="{!c.getMetadataItemListAsync}">
+        <aura:attribute name="type" type="String" />
+    </aura:method>
+    <aura:method name="getMetadataItemAsync" action="{!c.getMetadataItemAsync}">
+        <aura:attribute name="type" type="String" />
+        <aura:attribute name="name" type="String" />
+    </aura:method>
+
+    <aura:renderIf isTrue="{!v.showVFPage}">
+        <!-- https://developer.salesforce.com/blogs/developer-relations/2017/01/lightning-visualforce-communication.html -->
+        <iframe id="vfFrame" style="width:0;height:0;border:0; border:none;" aura:id="vfFrame" src="{!v.callerURL}" />
+    </aura:renderIf>
+</aura:component>

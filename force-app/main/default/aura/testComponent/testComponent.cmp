@@ -1,0 +1,30 @@
+<aura:component implements="flexipage:availableForAllPageTypes, force:appHostable" access="global">
+    <aura:attribute name="metadataTypes" type="List" />
+    <aura:attribute name="selectedMetadataType" type="String" />
+    <aura:attribute name="metadataItems" type="List" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.onInit}" />
+    <aura:handler name="change" value="{!v.selectedMetadataType}" action="{!c.onSelectedMetadataTypeChanged}" />
+
+    <c:metadataService aura:id="metadataService"/>
+    <div class="slds-box slds-p-around_large" style="background-color: white">
+        <lightning:spinner aura:id="spinner" size="large" class="slds-hide" />
+        <div class="slds-grid" style="align-items: flex-end">
+            <lightning:select label="Metadata Type" value="{!v.selectedMetadataType}">
+                <aura:iteration items="{!v.metadataTypes}" var="type">
+                    <option value="{!type}">{!type}</option>
+                </aura:iteration>
+            </lightning:select>
+            <lightning:button class="slds-m-left_x-small bottom-aligned" onclick="{!c.getMetdataItems}" label="Load Metadata Items" />
+        </div>
+        <div class="slds-m-top_x-small">
+            See <a href="https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/meta_types_list.htm">this link</a> for information on available metadata types
+        </div>
+        <div style="max-height: 71vh; overflow-y: auto; cursor: pointer;" class="slds-box">
+            <aura:iteration items="{!v.metadataItems}" var="item">
+                <div class="slds-box slds-m-vertical_x-small" data-name="{!item.name}" onclick="{!c.onItemClick}">{!item.name}</div>
+                <div class="{!item.content ? 'slds-box slds-p-around_x-small' : 'slds-hide'}" style="overflow-y: auto; max-height: 400px;">{!item.content}</div>
+            </aura:iteration>
+        </div>
+    </div>
+</aura:component>	
